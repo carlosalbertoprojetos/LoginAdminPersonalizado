@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Entrar{% endblock %}
+
+{% block content %}
+    <h2>Entrar</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-primary " type="submit">Entrar</button>
+    </form>
+    <br>
+    <div>
+        <!-- <a href="https://icons8.com/icon/13912/facebook">Facebook icon by Icons8</a> -->
+        <!-- <a href="https://icons8.com/icon/ho8QlOYvMuG3/gmail">Gmail icon by Icons8</a> -->
+    </div>
+    <div>
+
+        <br>
+        <div>
+            <a href="#">Esqueceu a senha?</a>
+        </div>
+    </div>
+
+
+{% endblock %}
+

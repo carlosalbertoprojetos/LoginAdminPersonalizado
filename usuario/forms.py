@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
+from .models import Profile
+
 User = get_user_model()
 
 class RegisterForm(forms.ModelForm):
@@ -11,13 +13,13 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email',]
+        fields = ['profile', 'email', 'password', 'password_2',]
 
     def clean_email(self): # confere se o email informado já está cadastrado
         email = self.cleaned_data.get('email')
         qs = User.objects.filter(email=email)
         if qs.exists():
-            raise forms.ValidationError("este email já está sendo utilizado")
+            raise forms.ValidationError("Este email já está sendo utilizado")
         return email
 
     def clean(self):
@@ -61,7 +63,21 @@ class UserAdminChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'is_active', 'admin',]
+        fields = ['email', 'password', 'staff', 'active', 'admin',]
 
     def clean_password(self):
         return self.initial["password"]
+
+
+# class ProfileUserForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ['name', 'cpf', 'photograph', 'doc_id', 'street', 'number', 'compl', 'neighbor', 'city', 'terms',]
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+        

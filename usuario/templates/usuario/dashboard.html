@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+
+<span></span>
+<h1>Seja bem vindo, <b><i>{{ user.email }}</i></b>, ao seu dashboard!</h1>
+<span></span>
+<br>
+
+<div class="offset-1 col-10 list-div">
+    <fieldset>
+        <div class="container-fluid dashboard">
+            <div class="col-4 dashboard-box" id="dashboard-lastdays">
+                <h4>Finalizadas nos últimos 30 dias</h4>
+                <span>{{ tasksrecently }}</span>
+            </div>
+            <div class="col-4 dashboard-box" id="dashboard-done">
+                <h4>Tarefas finalizadas</h4>
+                <span>{{ tasksdone }}</span>
+            </div>
+            <div class="col-4 dashboard-box" id="dashboard-doing">
+                <h4>Tarefas para fazer</h4>
+                <span>{{ tasksdoing }}</span>
+            </div>
+        </div>
+        <a id="add-link" href="/">
+            <div class="col-2 add-div">
+                <i class="fas fa-plus"></i> Adicionar tarefa
+            </div>
+        </a>
+    </fieldset>
+</div>
+
+{% endblock %}

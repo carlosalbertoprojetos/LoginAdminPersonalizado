@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn btn btn-primary" type="submit" href="">Cadastrar Perfil</button>
+</form>
+
+<main class="container">
+<h2>Cadastrar</h2>
+<form method="post">
+    <input type="hidden" name="" value="">
+
+    <div id="div_id_email" class="form-group"> <label for="id_email" class=" requiredField">
+            Profile<span class="asteriskField">*</span> </label> <div class=""> <input type="profile" name="profile" placeholder="Perfil" autocomplete="profile" class="textinput textInput form-control" required="" id="id_email"> </div> </div> <div id="div_id_password1" class="form-group"> <label for="id_password1" class=" requiredField">
+
+            E-mail<span class="asteriskField">*</span> </label> <div class=""> <input type="email" name="email" placeholder="Endereço de e-mail" autocomplete="email" class="textinput textInput form-control" required="" id="id_email"> </div> </div> <div id="div_id_password1" class="form-group"> <label for="id_password1" class=" requiredField">
+
+            Senha<span class="asteriskField">*</span> </label> <div class=""> <input type="password" name="password1" placeholder="Senha" autocomplete="new-password" class="textinput textInput form-control" required="" id="id_password1"> </div> </div> <div id="div_id_password2" class="form-group"> <label for="id_password2" class=" requiredField">
+
+            Senha (novamente)<span class="asteriskField">*</span> </label> <div class=""> <input type="password" name="password2" placeholder="Senha (novamente)" class="textinput textInput form-control" required="" id="id_password2"> </div> 
+    </div>
+
+    <button class="btn btn btn-primary" type="submit" href="">Cadastrar</button>
+</form>
+
+</main>
+    
+
+
+
+{% endblock %}
+
