@@ -5,11 +5,47 @@
 {% block title %}Cadastrar{% endblock %}
 
 {% block content %}
-    <h2>Cadastrar</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
+
+{% load socialaccount %}
+{% providers_media_js %}
+<!-- <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+        appId      : '173072084759216',
+        xfbml      : true,
+        version    : 'v11.0'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+</script> -->
+
+<h2>Cadastrar</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <div class="col-md-9">
         <button class="btn btn-primary" type="submit" href="#">Cadastrar</button>
-    </form>
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+        <a href='{% provider_login_url "facebook" method="oauth2" %}'><img src="https://img.icons8.com/color/50/000000/facebook.png"/></a>
+        <a href="{% provider_login_url 'google' %}" type="button" aria-pressed="true"><img src="https://img.icons8.com/fluent/50/000000/gmail.png"/></a>
+    </div>
+</form>
+<br>
+<div
+class="fb-like"
+data-share="true"
+data-width="450"
+data-show-faces="true">
+</div>
 {% endblock %}
 

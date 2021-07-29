@@ -65,8 +65,6 @@ class User(AbstractBaseUser):
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = [] # Email & Password are required by default.
 
-    # def get_absolute_url_profile(self):
-    #     return reverse('usuario:profile', args=[self.pk])
 
     def get_full_name(self):
         # The user is identified by their email address
@@ -123,10 +121,10 @@ class Profile(models.Model):
 
     email       = models.ForeignKey(User, 
                                     on_delete=models.CASCADE, 
-                                    related_name='+')
+                                    related_name='name')
     name        = models.CharField('Nome', max_length=100, null=False)
     cpf         = models.CharField('CPF', max_length=14, null=False)
-    photograph  = models.ImageField('Foto', blank=True, upload_to='usuario')
+    photograph  = models.ImageField('Foto', blank=False, upload_to='usuario/%Y/%m/%d')
     doc_id      = models.CharField('Documento de identidade', max_length=20, blank=False, null=False)
     
     street      = models.CharField('Rua/av.', max_length=30)
@@ -141,9 +139,13 @@ class Profile(models.Model):
     
     date_joined = models.DateTimeField('Data do cadastro', auto_now_add=True)
 
+    objects = models.Manager()
 
     def __str__(self):
         return self.name
+
+    # def get_absolute_url_profile(self):
+    #     return reverse('usuario:profile', args=[self.pk])
 
     @property
     def view_image(self):
